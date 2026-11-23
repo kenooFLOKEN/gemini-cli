@@ -1,8 +1,9 @@
 name: '🧠 Gemini CLI Bot: Brain'
 
 on:
-  schedule:
-    - cron: '0 0 * * *' # Every 24 hours
+  # Fork-Test: täglicher Auto-Start deaktiviert, damit der Workflow nur manuell/per Kommentar läuft.
+  # schedule:
+  #   - cron: '0 0 * * *' # Every 24 hours
   issue_comment:
     types: ['created']
   workflow_dispatch:
@@ -346,5 +347,5 @@ jobs:
             # Skipping author validation here to let the app post.
 
             # Use REST API (gh api) for consistency and robot identity
-            gh api "repos/${{ github.repository }}/issues/$PR_NUM/comments" -F body=@"${{ runner.temp }}/brain-data/pr-comment.md"
+            gh api "repos/${{ github.repository }}/issues/$PR_NUM/comments" -F body=@"${{ runner.temp }}/brain-data/issue-comment.md"
           fi
